@@ -92,3 +92,6 @@ https://localhost:5001/Contacts/5e07a6898adf0a52b8ae6e27
 
 - DELETE -- DELETE. Return 204 No Content.
 https://localhost:5001/Contacts/5e07a6898adf0a52b8ae6e27
+
+A good tutorial on MongoDB - ASP.NET Core Can be found here: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-3.1&tabs=visual-studio
+
