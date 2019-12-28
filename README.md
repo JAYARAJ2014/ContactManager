@@ -1,7 +1,28 @@
+# Contact Manager
+### A Sample application that uses Angular 8.* + Material, .NET Core 3.* and Mongo DB. 
+
+#### First phase is building the API.
+
+`dotnet add package MongoDB.Driver`  This driver encapuslates all necessary operatoins.
+
+Create MongoClient
+
+Create Database by calling MongoClient.GetDatabase(<DatabaseName>)
+
+Database.GetCollection<ModelName>("_collectionName_") to retreive the collection.
+
+Collection.Find(x=>true) returns all documents in the collection
+
+Collection.Find(x => x.Id == <idparameter>) retruns a specific document
+
+Collection.InsertOne(<Object>) inserts the given object in to the collection. (Document gets created)
+
+Refer to the DataContext and ContactsController for implementation.
+
 ## Sample JSON input
 
 
-`
+```
 
 {
   
@@ -52,17 +73,17 @@
 }
 
 
-`
+```
 
 
 ### API Urls
 
-GET --Retreive Specific
+- GET --Retreive Specific
 https://localhost:5001/Contacts/5e06cca053d0aa2d2cf532a1
 
-PUT -- Create. Return 201 with new Url.
+- PUT -- Create. Return 201 with new Url.
 https://localhost:5001/Contacts
 
-GET  --Gets All
+- GET  --Gets All
 https://localhost:5001/Contacts 
 
