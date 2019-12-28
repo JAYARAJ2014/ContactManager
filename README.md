@@ -81,9 +81,14 @@ Refer to the DataContext and ContactsController for implementation.
 - GET --Retreive Specific
 https://localhost:5001/Contacts/5e06cca053d0aa2d2cf532a1
 
-- PUT -- Create. Return 201 with new Url.
+- POST -- Create. Return 201 with new Url.
 https://localhost:5001/Contacts
 
 - GET  --Gets All
 https://localhost:5001/Contacts 
 
+- PUT -- UPDATE. Return 200.
+https://localhost:5001/Contacts/5e07a6898adf0a52b8ae6e27
+
+- DELETE -- DELETE. Return 204 No Content.
+https://localhost:5001/Contacts/5e07a6898adf0a52b8ae6e27
