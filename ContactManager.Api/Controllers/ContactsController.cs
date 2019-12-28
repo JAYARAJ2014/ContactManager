@@ -67,33 +67,37 @@ namespace ContactManager.Controllers
             return Ok(contact);
         }
         [HttpGet]
-        public ActionResult<List<Contact>> GetAllContacts()
+        public async Task<ActionResult<List<Contact>>> GetAllContacts()
         {
-            return Ok(_context.Contacts.Find(c => true).ToList<Contact>());
+            var result = await _context.Contacts.FindAsync(c => true);
+            return Ok(result.ToList<Contact>());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Contact> GetContactById(string id)
+        public async Task<ActionResult<Contact>> GetContactById(string id)
         {
-            return _context.Contacts.Find<Contact>(c => c.Id == id).FirstOrDefault();
-        }
-
-        [HttpPut]
-        public ActionResult<Contact> CreateContact(Contact contact)
-        {
-            _context.Contacts.InsertOne(contact);
-            return Created($"/{contact.Id}", contact);
+            var result = await _context.Contacts.FindAsync(c => c.Id == id).Result.FirstOrDefaultAsync();
+            return result;
         }
 
         [HttpPost]
-        public ActionResult UpdateCotnact(string id, Contact contact)
+        public async Task<ActionResult<Contact>> CreateContact(Contact contact)
         {
+            await _context.Contacts.InsertOneAsync(contact);
+            return Created($"/{contact.Id}", contact);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateContact(string id, [FromBody]Contact updatedContact)
+        {
+            await _context.Contacts.ReplaceOneAsync(c => c.Id == id, updatedContact);
             return Ok("");
         }
 
-        [HttpDelete]
-        public ActionResult DeleteContact(string id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteContact(string id)
         {
+            await _context.Contacts.DeleteOneAsync(c => c.Id == id);
             return NoContent();
         }
     }
