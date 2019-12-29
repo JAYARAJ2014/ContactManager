@@ -74,7 +74,8 @@ Refer to the DataContext and ContactsController for implementation.
 
 
 ```
-
+### Additional considerations
+CORS is enabled to the specified origin. (This should not be hard coded in realstic apps)
 
 ### API Urls
 
@@ -95,3 +96,20 @@ https://localhost:5001/Contacts/5e07a6898adf0a52b8ae6e27
 
 A good tutorial on MongoDB - ASP.NET Core Can be found here: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-3.1&tabs=visual-studio
 
+
+### Front-end implementation. 
+Created angular project
+Added angular material using schematic ng add @angular\material
+created a sidenav component that implements material side nav. No logic here. Only navigation.
+Create a mat-tool bar only to give a top tool bar and heading in the layout. Again, no logic here. No navigation either
+
+created a contact model . (models folder)
+created a contacts service (Invokes HTTP Service and returns observables)
+
+Created a component contact-list. On the init life cycle hook added a call to the contact-service
+
+
+### To run the applicaton
+
+navigate to the folder ContactManager.Api and issue the command `dotnet run`
+navigate to the folder contact-manager and issue the command `ng serve`
