@@ -9,12 +9,14 @@ import { MaterialModule } from './material/material.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CotactsService } from './cotacts.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactListComponent } from './contact-list/contact-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ContactListComponent
   ],
   imports: [
     BrowserModule,

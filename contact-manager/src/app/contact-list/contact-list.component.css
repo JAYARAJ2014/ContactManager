@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+  }
+  
+  tr.contacts-detail-row {
+    height: 0;
+  }
+  
+  tr.contacts-contact-row:not(.contacts-expanded-row):hover {
+    background: #777;
+  }
+  
+  tr.contacts-contact-row:not(.contacts-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .contacts-contact-row td {
+    border-bottom-width: 0;
+  }
+  
+  .contacts-contact-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .contacts-contact-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .contacts-contact-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .contacts-contact-description {
+    padding: 16px;
+  }
+  
+  .contacts-contact-description-attribution {
+    opacity: 0.5;
+  }
+  

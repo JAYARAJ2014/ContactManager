@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CotactsService } from '../cotacts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,17 +9,19 @@ import { CotactsService } from '../cotacts.service';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor(private contactService: CotactsService) { }
+  constructor( private router: Router) { }
 
   sideNavOpened = true;
   sideNavMode = "side";
 
   ngOnInit() {
 
-    this.contactService.getAllContacts().subscribe(
-      (r) => {
-        console.log(r);
-      });
+  
+  }
+
+  allContactsClicked(){
+    this.router.navigate(['/contacts']);
+    console.log('All Contacts clicked');
   }
 
 }
