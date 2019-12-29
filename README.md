@@ -1,6 +1,6 @@
 # Contact Manager
+## Current Status: Work-In-Progress;
 ### A Sample application that uses Angular 8.* + Material, .NET Core 3.* and Mongo DB. 
-
 #### First phase is building the API.
 
 `dotnet add package MongoDB.Driver`  This driver encapuslates all necessary operatoins.
