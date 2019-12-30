@@ -10,13 +10,15 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CotactsService } from './cotacts.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactListComponent } from './contact-list/contact-list.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     ToolbarComponent,
-    ContactListComponent
+    ContactListComponent,
+    EditContactComponent
   ],
   imports: [
     BrowserModule,

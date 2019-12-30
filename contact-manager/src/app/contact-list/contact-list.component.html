@@ -34,7 +34,9 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let contact" >
+          <a [routerLink]="['/edit', contact.id]">
             <mat-icon color="primary">edit</mat-icon>
+          </a> 
             <mat-icon color="warn">delete</mat-icon> 
           </mat-cell> 
             </ng-container>>
