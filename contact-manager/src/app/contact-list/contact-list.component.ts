@@ -12,12 +12,9 @@ export class ContactListComponent implements OnInit {
   constructor(private contactService: CotactsService, ) { }
   dataSource: IContact[];
   showSpinner = false; 
-  columnsToDisplay = ['firstName', 'middleName', 'lastName'];
-  columnNamesToDisplay = {
-    firstName:'First Name',
-    middleName: 'Middle Name',
-    lastName: 'Last Name'
-  };
+  columnsToDisplay = ['firstName', 'middleName', 'lastName','action'];
+
+
   ngOnInit() {
     this.showSpinner = true; 
     this.contactService.getAllContacts().subscribe(
