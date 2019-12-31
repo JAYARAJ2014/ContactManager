@@ -2,13 +2,21 @@
   <mat-card>
     <mat-card-title>Edit Contact</mat-card-title>
     <mat-card-content>
+    
       <div class="container">
         <mat-form-field>
           <input
             matInput
             placeholder="First Name"
             formControlName="firstName"
+            
           />
+          <mat-error *ngIf="this.contactForm.get('firstName').hasError('required')">
+            First Name is required
+          </mat-error>
+          <mat-error *ngIf="this.contactForm.get('firstName').hasError('minlength')">
+            Minimum 4 characters needed for First Name
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -19,17 +27,23 @@
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Last Name" formControlName="lastName" />
+          <mat-error *ngIf="this.contactForm.get('lastName').hasError('required')">
+            Last Name is required
+          </mat-error>
+          <mat-error *ngIf="this.contactForm.get('lastName').hasError('minlength')">
+            Minimum 4 characters needed for Last Name
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Birth Day" formControlName="birthDay" />
         </mat-form-field>
       </div>
-      <button mat-mini-fab color="accent" (click)="addPhone()">
+      <button mat-mini-fab color="accent" (click)="addPhones()">
         <mat-icon>add</mat-icon>
       </button>
 
-      <div class="container">
-        <div formArrayName="phones" *ngFor="let phone of phones.controls; let i=index">
+     
+        <div class="container" formArrayName="phones" *ngFor="let phone of phones.controls; let i=index">
           <div [formGroupName]="i">
             <mat-radio-group formControlName="phoneTitle">
               <mat-radio-button value="Cell">Cell</mat-radio-button>
@@ -68,6 +82,9 @@
                   placeholder="Email Id"
                   formControlName="emailId"
                 />
+                <mat-error *ngIf="this.contactForm.get('emailId').hasError('email')">
+                  Email address invalid
+                </mat-error>
               </mat-form-field>
               <mat-divider></mat-divider>
             </div>
@@ -118,7 +135,6 @@
               <mat-divider></mat-divider>
             </div>
           </div>
-      </div>
     </mat-card-content>
     <mat-card-footer>
       <button type="submit" mat-raised-button color="primary">

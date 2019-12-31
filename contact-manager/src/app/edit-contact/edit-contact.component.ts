@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ContactsService } from '../contacts.service';
 import { IContact } from '../models/contact.model';
 
@@ -33,9 +33,9 @@ export class EditContactComponent implements OnInit {
   }
   contactForm = this.formBuilder.group({
 
-    firstName: [''],
+    firstName: ['',[Validators.required, Validators.minLength(4)]],
     middleName: [''],
-    lastName: [''],
+    lastName: ['',[Validators.required, Validators.minLength(4)]],
     birthDay: [''],
     phones: this.formBuilder.array([]),
     addresses: this.formBuilder.array([]),
@@ -51,7 +51,7 @@ export class EditContactComponent implements OnInit {
   buildEmailsGroup(): any {
     return this.formBuilder.group({
       emailTitle: [''],
-      emailId: ['']
+      emailId: ['',Validators.email]
     });
   }
 
