@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ContactsService } from '../contacts.service';
 import { IContact } from '../models/contact.model';
@@ -13,12 +13,23 @@ export class EditContactComponent implements OnInit {
 
   contact: IContact;
   get phones() {
-    let x = <FormArray> this.contactForm.get('phones') as FormArray;
-    // console.log("x is " + JSON.stringify(x));
-    return x; 
+    return <FormArray>this.contactForm.get('phones') as FormArray;
   }
-  addPhone(g) {
-    this.phones.push(this.formBuilder.control(g));
+  get emails() {
+    return <FormArray>this.contactForm.get('emails') as FormArray;
+  }
+  get addresses() {
+    return <FormArray>this.contactForm.get('addresses') as FormArray;
+  }
+
+  addPhones() {
+    this.phones.push(this.buildPhonesGroup());
+  }
+  addEmails() {
+    this.emails.push(this.buildEmailsGroup());
+  }
+  addAddresses() {
+    this.addresses.push(this.buildAddressGroup());
   }
   contactForm = this.formBuilder.group({
 
@@ -26,9 +37,9 @@ export class EditContactComponent implements OnInit {
     middleName: [''],
     lastName: [''],
     birthDay: [''],
-    phones: this.formBuilder.array([this.buildPhonesGroup()]),
-    addresses: this.buildAddressGroup(),
-    emails: this.buildEmailsGroup()
+    phones: this.formBuilder.array([]),
+    addresses: this.formBuilder.array([]),
+    emails: this.formBuilder.array([])
   });
 
   constructor(private route: ActivatedRoute,
@@ -62,19 +73,30 @@ export class EditContactComponent implements OnInit {
       (result) => {
         this.contact = result;
         console.log('this.contact=' + JSON.stringify(this.contact));
+        this.contact.phones.forEach(phone => {
+          this.addPhones();
+        });
+
+        this.contact.emails.forEach(email => {
+          this.addEmails();
+        });
+
+        this.contact.addresses.forEach(address => {
+          this.addAddresses();
+        });
+
         this.contactForm.patchValue({
           firstName: this.contact.firstName,
           middleName: this.contact.middleName,
           lastName: this.contact.lastName,
           birthDay: this.contact.birthDay,
-              address: this.contact.addresses,
-          emails: this.contact.emails
+          addresses: this.contact.addresses,
+          emails: this.contact.emails,
+          phones: this.contact.phones,
         });
-        
 
-        this.contact.phones.forEach(phone => {
-          this.addPhone(phone);
-        });
+
+
 
       }
     );

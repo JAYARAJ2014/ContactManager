@@ -24,7 +24,7 @@
           <input matInput placeholder="Birth Day" formControlName="birthDay" />
         </mat-form-field>
       </div>
-      <button mat-mini-fab color="accent">
+      <button mat-mini-fab color="accent" (click)="addPhone()">
         <mat-icon>add</mat-icon>
       </button>
 
@@ -51,8 +51,73 @@
                 formControlName="phoneNumber"
               />
             </mat-form-field>
+            <mat-divider></mat-divider>
+
           </div>
         </div>
+        <div formArrayName="emails" *ngFor="let email of emails.controls; let i=index">
+            <div [formGroupName]="i">
+              <mat-radio-group formControlName="emailTitle">
+                <mat-radio-button value="Personal">Personal</mat-radio-button>
+                <mat-radio-button value="Work">Work</mat-radio-button>
+              </mat-radio-group>
+  
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Email Id"
+                  formControlName="emailId"
+                />
+              </mat-form-field>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+
+          <div formArrayName="addresses" *ngFor="let address of addresses.controls; let i=index">
+            <div [formGroupName]="i">
+              <mat-radio-group formControlName="addressTitle">
+                <mat-radio-button value="Home">Home</mat-radio-button>
+                <mat-radio-button value="Office">Work</mat-radio-button>
+              </mat-radio-group>
+  
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Street"
+                  formControlName="street"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="City"
+                  formControlName="city"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Zip Code"
+                  formControlName="zipCode"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="State"
+                  formControlName="state"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Country"
+                  formControlName="country"
+                />
+              </mat-form-field>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
       </div>
     </mat-card-content>
     <mat-card-footer>
