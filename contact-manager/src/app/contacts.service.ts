@@ -8,7 +8,7 @@ import { IContact } from './models/contact.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CotactsService {
+export class ContactsService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,6 +20,13 @@ export class CotactsService {
     );
   }
 
+  getContactById(id: string): Observable<IContact> {
+    // const subject = new Subject<IContact[]>(); 
+    return this.httpClient.get<IContact>(environment.apiUrl + id).pipe(
+      tap(data=> console.log('Data from API: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {

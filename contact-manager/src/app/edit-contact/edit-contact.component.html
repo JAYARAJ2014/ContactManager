@@ -1,2 +1,68 @@
-<p>edit-contact works!</p>
-selected id is {{selection}}
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-title>Edit Contact</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="First Name"
+            formControlName="firstName"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Middle Name"
+            formControlName="middleName"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Birth Day" formControlName="birthDay" />
+        </mat-form-field>
+      </div>
+      <button mat-mini-fab color="accent">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <div class="container">
+        <div formArrayName="phones" *ngFor="let phone of phones.controls; let i=index">
+          <div [formGroupName]="i">
+            <mat-radio-group formControlName="phoneTitle">
+              <mat-radio-button value="Cell">Cell</mat-radio-button>
+              <mat-radio-button value="Home">Home</mat-radio-button>
+              <mat-radio-button value="Work">Work</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Country Code"
+                formControlName="countryCode"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Phone Number"
+                formControlName="phoneNumber"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <button type="submit" mat-raised-button color="primary">
+        <mat-icon>save</mat-icon> Save
+      </button>
+      <button (click)="goBackToList()" mat-raised-button color="accent">
+        <mat-icon>undo</mat-icon> Back
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</form>
+{{ contactForm.value | json }}

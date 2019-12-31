@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CotactsService } from '../cotacts.service';
+import { ContactsService } from '../contacts.service';
 import { IContact } from '../models/contact.model';
 
 @Component({
@@ -9,7 +9,7 @@ import { IContact } from '../models/contact.model';
 })
 export class ContactListComponent implements OnInit {
 
-  constructor(private contactService: CotactsService, ) { }
+  constructor(private contactService: ContactsService, ) { }
   dataSource: IContact[];
   showSpinner = false; 
   columnsToDisplay = ['firstName', 'middleName', 'lastName','action'];
